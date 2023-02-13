@@ -52,6 +52,7 @@ To make HTTP requests, use fetch like so:
         "Content-Type": "application/json",
         },
     });
+    response.json(); // will give you the json response from this request
     
     // a POST request:
     const response = await fetch(API_BASE_URL + "api/posts", {
@@ -62,6 +63,7 @@ To make HTTP requests, use fetch like so:
         },
         body: JSON.stringify({ text: text }),
     });
+    response.json(); // will give you the json response from this request
 
     // a PUT request:
     const response = await fetch(`${API_BASE_URL}api/posts/${id}`, {
