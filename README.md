@@ -13,7 +13,7 @@ Run:
 
 This will start the react app and the server app at the same time, with hot reload enabled for both of them.
 
-React app will run on **localhost:3000** and the server will run on **localhost:3001**.
+React app will run on **localhost:3000** and the express server needs to be created, to run on **localhost:3001**.
 
 You should use:
 
@@ -43,6 +43,16 @@ Hint: fetcher for useSWR looks like this:
 
 To make HTTP requests, use fetch like so:
 
+    // a GET request:
+
+    const response = await fetch(API_BASE_URL + "api/posts", {
+        method: "GET",
+        mode: "cors",
+        headers: {
+        "Content-Type": "application/json",
+        },
+    });
+    
     // a POST request:
     const response = await fetch(API_BASE_URL + "api/posts", {
         method: "POST",
@@ -62,6 +72,13 @@ To make HTTP requests, use fetch like so:
       },
       body: JSON.stringify({ text: text }),
     });
+
+    // DELETE
+    const response = await fetch(API_BASE_URL + `api/posts/${id}`, {
+      method: "DELETE",
+      mode: "cors",
+    });
+
 
 fetch() is async, so it returns a Promise.
 
@@ -88,7 +105,7 @@ The text inside the post component should be editable. You can use an Input tag,
 
 The Delete button will send an http DELETE request to http://localhost:3001/api/posts/${id} to delete a post with that specific ID.
 
-The Update button will sned an http PUT request to http://localhost:3001/api/posts/${id}, to update the post text with whatever you edited in that post text.
+The Update button will send an http PUT request to http://localhost:3001/api/posts/${id}, to update the post text with whatever you edited in that post text.
 
 After a Delete or Update, trigger an update to properly display the list of posts, with the correct ones that were deleted or updated.
 
